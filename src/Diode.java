@@ -4,7 +4,7 @@
 public class Diode extends WireElement {
     private int posX;
     private int posY;
-    private int sizeX = 2;
+    private int sizeX = 4;
     private int sizeY = 3;
     private int rotation;
     private byte[][] grid;
@@ -14,13 +14,19 @@ public class Diode extends WireElement {
         this.posY = posY;
         this.rotation = rotation;
 
-        grid = new byte[2][3];
-        grid[0][0] = 1;
-        grid[0][1] = 0;
-        grid[0][2] = 1;
+        grid = new byte[4][3];
+        grid[0][0] = 0;
+        grid[0][1] = 1;
+        grid[0][2] = 0;
         grid[1][0] = 1;
-        grid[1][1] = 1;
+        grid[1][1] = 0;
         grid[1][2] = 1;
+        grid[2][0] = 1;
+        grid[2][1] = 1;
+        grid[2][2] = 1;
+        grid[3][0] = 0;
+        grid[3][1] = 1;
+        grid[3][2] = 0;
     }
 
     @Override
