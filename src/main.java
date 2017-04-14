@@ -9,7 +9,11 @@ public class main {
         WireElement[] elementList = parser.getElements(10);
         Matrix matrix = new Matrix(elementList);
         matrix.fillMatrix();
-        byte[][] mat = matrix.getMatrix();
+        for (int i = 0; i < 5; i++) {
+            matrix.printMatrix();
+            matrix.jumpToNexGen();
+            System.out.printf("\n");
+        }
         matrix.printMatrix();
     }
 }
