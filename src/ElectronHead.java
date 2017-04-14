@@ -34,7 +34,7 @@ public class ElectronHead extends WireElement{
 
     @Override
     public byte getGridPoint(int posX, int posY){
-        return 3;
+        return 2;
     }
 
     @Override
