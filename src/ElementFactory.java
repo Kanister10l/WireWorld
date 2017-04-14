@@ -29,6 +29,8 @@ public class ElementFactory {
             element = new NANDORGateMirrored(posX, posY, rotation);
         else if (type.equals("FlipFlop"))
             element = new FlipFlop(posX, posY, rotation);
+        else if (type.equals("Wire"))
+            element = new Wire(posX, posY, rotation);
         else
             element = null;
 
