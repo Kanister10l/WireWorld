@@ -92,4 +92,11 @@ public class Matrix {
             System.out.printf("\n");
         }
     }
+    public int getSizeX(){
+        return lastX + 2;
+    }
+
+    public int getSizeY(){
+        return lastY + 2;
+    }
 }
