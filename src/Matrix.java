@@ -78,8 +78,8 @@ public class Matrix {
     }
 
     public void printMatrix(){
-        for (int i = 1; i < lastY; i++) {
-            for (int j = 1; j < lastX; j++) {
+        for (int i = 1; i < lastY + 1; i++) {
+            for (int j = 1; j < lastX + 1; j++) {
                 System.out.printf("%d",matrix[j][i]);
             }
             System.out.printf("\n");
