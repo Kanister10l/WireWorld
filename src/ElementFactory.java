@@ -21,6 +21,12 @@ public class ElementFactory {
             element = new XORGate(posX, posY, rotation);
         else if (type.equals("NANDGate1"))
             element = new NANDGate1(posX, posY, rotation);
+        else if (type.equals("NANDGate2"))
+            element = new NANDGate2(posX, posY, rotation);
+        else if (type.equals("NANDORGate"))
+            element = new NANDORGate(posX, posY, rotation);
+        else if (type.equals("NANDORGateMirrore"))
+            element = new NANDORGateMirrored(posX, posY, rotation);
         else
             element = null;
 
