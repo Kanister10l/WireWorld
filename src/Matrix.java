@@ -62,18 +62,25 @@ public class Matrix {
     }
 
     public byte[][] jumpToNexGen(){
+        byte[][] temp = new byte[lastX + 2][lastY + 2];
         for (int i = 1; i < lastX + 1; i++){
             for (int j = 1; j < lastY + 1; j++) {
                 if (matrix[i][j] == 1) {
                     if (this.findNeighbour(i, j) == 1 || this.findNeighbour(i, j) == 2)
-                        matrix[i][j] = 3;
-                }
-                else if (matrix[i][j] == 2)
-                    matrix[i][j] = 1;
+                        temp[i][j] = 3;
+                    else
+                        temp[i][j] = 1;
+                } else if (matrix[i][j] == 2)
+                    temp[i][j] = 1;
                 else if (matrix[i][j] == 3)
-                    matrix[i][j] = 2;
+                    temp[i][j] = 2;
+                else if (matrix[i][j] == 0)
+                    temp[i][j] = 0;
+                else
+                    temp[i][j] = 1;
             }
         }
+        matrix = temp;
         return matrix;
     }
 
