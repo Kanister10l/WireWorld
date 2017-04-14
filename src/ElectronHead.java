@@ -7,14 +7,11 @@ public class ElectronHead extends WireElement{
     private int sizeX = 1;
     private int sizeY = 1;
     private int rotation;
-    private byte grid;
 
     public ElectronHead(int posX, int posY, int rotation){
         this.posX = posX;
         this.posY = posY;
         this.rotation = rotation;
-
-        grid = 2;
     }
 
     @Override

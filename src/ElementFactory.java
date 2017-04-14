@@ -11,6 +11,16 @@ public class ElementFactory {
     public WireElement newElement(String type, int posX, int posY, int rotation){
         if (type.equals("Diode"))
             element = new Diode(posX, posY, rotation);
+        else if (type.equals("ElectronHead"))
+            element = new ElectronHead(posX, posY, rotation);
+        else if (type.equals("ElectronTail"))
+            element = new ElectronTail(posX, posY, rotation);
+        else if (type.equals("ORGate"))
+            element = new ORGate(posX, posY, rotation);
+        else if (type.equals("XORGate"))
+            element = new XORGate(posX, posY, rotation);
+        else if (type.equals("NANDGate1"))
+            element = new NANDGate1(posX, posY, rotation);
         else
             element = null;
 
