@@ -78,9 +78,9 @@ public class Matrix {
     }
 
     public void printMatrix(){
-        for (int i = 0; i < lastX + 1; i++) {
-            for (int j = 0; j < lastY + 1; j++) {
-                System.out.printf("%d",matrix[i][j]);
+        for (int i = 1; i < lastY; i++) {
+            for (int j = 1; j < lastX; j++) {
+                System.out.printf("%d",matrix[j][i]);
             }
             System.out.printf("\n");
         }
