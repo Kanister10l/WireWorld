@@ -71,4 +71,9 @@ public class Diode extends WireElement {
         else
             return sizeX;
     }
+
+    @Override
+    public String getType(){
+        return "Diode";
+    }
 }

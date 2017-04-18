@@ -14,4 +14,6 @@ public abstract class WireElement {
     public abstract int getSizeX();
 
     public abstract int getSizeY();
+
+    public abstract String getType();
 }

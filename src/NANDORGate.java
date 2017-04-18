@@ -106,4 +106,9 @@ public class NANDORGate extends WireElement {
         else
             return sizeX;
     }
+
+    @Override
+    public String getType(){
+        return "NANDORGate";
+    }
 }

@@ -106,4 +106,9 @@ public class NANDGate1 extends WireElement {
         else
             return sizeX;
     }
+
+    @Override
+    public String getType(){
+        return "NANDGate1";
+    }
 }

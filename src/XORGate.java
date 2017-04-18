@@ -98,4 +98,9 @@ public class XORGate extends WireElement {
         else
             return sizeX;
     }
+
+    @Override
+    public String getType(){
+        return "XORGate";
+    }
 }

@@ -1,8 +1,6 @@
-import javax.swing.*;
 import java.awt.*;
-import java.io.FileNotFoundException;
 
-public class Main {
+public class main {
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {

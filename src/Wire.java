@@ -43,4 +43,9 @@ public class Wire extends WireElement {
     public int getSizeY(){
         return sizeY;
     }
+
+    @Override
+    public String getType(){
+        return "Wire";
+    }
 }

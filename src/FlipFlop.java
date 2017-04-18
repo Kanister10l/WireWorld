@@ -118,4 +118,9 @@ public class FlipFlop extends WireElement {
         else
             return sizeX;
     }
+
+    @Override
+    public String getType(){
+        return "FlipFlop";
+    }
 }

@@ -82,4 +82,9 @@ public class ORGate extends WireElement {
         else
             return sizeX;
     }
+
+    @Override
+    public String getType(){
+        return "ORGate";
+    }
 }

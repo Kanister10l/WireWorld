@@ -106,4 +106,9 @@ public class NANDORGateMirrored extends WireElement {
         else
             return sizeX;
     }
+
+    @Override
+    public String getType(){
+        return "NANDORGateMirrored";
+    }
 }

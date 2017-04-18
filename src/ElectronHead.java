@@ -43,4 +43,9 @@ public class ElectronHead extends WireElement{
     public int getSizeY(){
         return sizeY;
     }
+
+    @Override
+    public String getType(){
+        return "ElectronHead";
+    }
 }
