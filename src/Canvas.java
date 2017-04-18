@@ -9,6 +9,7 @@ public class Canvas extends JPanel{
     private Matrix matrix;
     private Color colors[];
     private int blockSize = 15;
+    private WireElement[] elementList;
     public Canvas() {
         area = new Dimension(0,0);
         colors = new Color[4];
@@ -56,7 +57,6 @@ public class Canvas extends JPanel{
     }
     public void loadMatix(File cfgFile){
         FileParser parser = new FileParser(cfgFile.getAbsolutePath());
-        WireElement[] elementList = new WireElement[0];
         try {
             elementList = parser.getElements(10);
         } catch (FileNotFoundException e) {
@@ -87,5 +87,13 @@ public class Canvas extends JPanel{
     }
     public boolean isMatrixLoaded(){
         return (matrix != null);
+    }
+
+    public WireElement[] getElementList(){
+        return elementList;
+    }
+
+    public Matrix getMatrix(){
+        return matrix;
     }
 }

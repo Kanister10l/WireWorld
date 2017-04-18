@@ -58,6 +58,13 @@ public class Gui extends JFrame {
 
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 File file = fc.getSelectedFile();
+                FileSave save = new FileSave(file);
+                try {
+                    save.saveFile(canvas.getElementList(), canvas.getMatrix());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
                 System.out.println("Saving to : " + file.getAbsolutePath() + "." );
             }
         });

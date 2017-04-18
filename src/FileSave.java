@@ -1,4 +1,5 @@
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -6,20 +7,20 @@ import java.io.IOException;
  * Created on 16.04.2017 at 20:26 for usage in WireWorld.
  */
 public class FileSave {
-    private String fileName;
+    private File file;
 
-    public FileSave(String fileName){
-        this.fileName = fileName;
+    public FileSave(File file){
+        this.file = file;
     }
 
     public void saveFile(WireElement[] elementList, Matrix matrix) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
         int k = 0;
 
         for (WireElement element: elementList) {
             StringBuilder cfg = new StringBuilder();
             if (element != null) {
-                if (!element.getType().equals("ElectronHead") || !element.getType().equals("ElectronTail")) {
+                if (!element.getType().equals("ElectronHead") && !element.getType().equals("ElectronTail")) {
                     if (k != 0)
                         writer.newLine();
                     k++;
@@ -43,6 +44,7 @@ public class FileSave {
             for (int j = 0; j < y; j++) {
                 StringBuilder cfg = new StringBuilder();
                 if (grid[i][j] == 2){
+                    writer.newLine();
                     cfg.append("ElectronTail");
                     cfg.append(":");
                     cfg.append(i-1);
@@ -53,6 +55,7 @@ public class FileSave {
                     writer.write(cfg.toString());
                 }
                 else if (grid[i][j] == 3){
+                    writer.newLine();
                     cfg.append("ElectronHead");
                     cfg.append(":");
                     cfg.append(i-1);
