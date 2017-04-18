@@ -8,7 +8,7 @@ public class Canvas extends JPanel{
     private Dimension area;
     private Matrix matrix;
     private Color colors[];
-    private int blockSize = 30;
+    private int blockSize = 15;
     public Canvas() {
         area = new Dimension(0,0);
         colors = new Color[4];
@@ -28,7 +28,6 @@ public class Canvas extends JPanel{
                 RenderingHints.VALUE_RENDER_QUALITY);
 
         g2d.setRenderingHints(rh);
-        Random rand = new Random();
         int sizeX = matrix.getSizeX();
         int sizeY = matrix.getSizeY();
 
@@ -69,17 +68,24 @@ public class Canvas extends JPanel{
         setArea((matrix.getSizeX())*(blockSize+1),(matrix.getSizeY())*(blockSize+1));
 
     }
+    public void nextGen(){
+        matrix.jumpToNexGen();
+        this.repaint();
+    }
     @Override
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
         g.clearRect(0, 0, getWidth(), getHeight());
-        if(matrix != null){
+        if(this.isMatrixLoaded()){
             doDrawing(g);
         }else{
             Graphics2D g2d = (Graphics2D) g;
             g2d.setFont(new Font("Serif", Font.PLAIN, 20));
             g2d.drawString("Proszę o wybranie pliku do wczytania.", 40, 50);
         }
+    }
+    public boolean isMatrixLoaded(){
+        return (matrix != null);
     }
 }

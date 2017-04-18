@@ -7,8 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 
 import static java.awt.GridBagConstraints.PAGE_START;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  * Created by jamsl on 2017-04-11.
@@ -20,6 +23,8 @@ public class Gui extends JFrame {
     private JButton exitButton;
     private JPanel menuPanel;
     private Canvas canvas;
+    private Boolean isSimRunning=false;
+    private Simulation sim;
 
     public Gui(){
         try {
@@ -49,23 +54,38 @@ public class Gui extends JFrame {
         });
         saveFileButton.addActionListener((ActionEvent event) -> {
             final JFileChooser fc = new JFileChooser();
-            fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            int returnVal = fc.showOpenDialog(Gui.this);
+            int returnVal = fc.showSaveDialog(Gui.this);
 
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 File file = fc.getSelectedFile();
-                //This is where a real application would open the file.
-                System.out.println("Opening: " + file.getName() + "." );
-            } else {
-                System.out.println("Open command cancelled by user.");
+                System.out.println("Saving to : " + file.getAbsolutePath() + "." );
             }
         });
         startSimButton.addActionListener((ActionEvent event) -> {
-            startSimButton.setText("Zatrzymaj symulację");
-            canvas.repaint();
+            if(canvas.isMatrixLoaded()) {
+
+                if (!isSimRunning) {
+                    startSimButton.setText("Zatrzymaj");
+                    sim = new Simulation(canvas);
+                    sim.start();
+                    isSimRunning = true;
+                } else {
+                    sim.stop();
+                    isSimRunning = false;
+                    startSimButton.setText("Start symulacji");
+                }
+            }else{
+                showMessageDialog(null   , "Najpierw załaduj plik z układem!","Błąd",ERROR_MESSAGE);
+            }
         });
         exitButton.addActionListener((ActionEvent event) -> {
             System.exit(0);
+        });
+        //drag and drop
+        new  FileDrop( canvas, files -> {
+            File toLoad = files[0];
+            canvas.loadMatix(toLoad);
+            canvas.repaint();
         });
     }
     private void initUI(){
@@ -90,8 +110,8 @@ public class Gui extends JFrame {
         exitButton.setBounds(10,130,120,30);
         menuPanel.add(exitButton);
 
-
         add(menuPanel,BorderLayout.WEST);
+
         canvas = new Canvas();
         JScrollPane scroller = new JScrollPane(canvas);
         scroller.getViewport().addChangeListener(new ListenScrolled(canvas));
@@ -99,11 +119,9 @@ public class Gui extends JFrame {
 
         add(scroller,BorderLayout.CENTER);
 
-
         pack();
         setTitle("Wireworld");
         setSize(600, 450);
-       // setResizable(false);
         ImageIcon webIcon = new ImageIcon("icon.png");
         setIconImage(webIcon.getImage());
         setLocationRelativeTo(null);
