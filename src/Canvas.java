@@ -17,9 +17,9 @@ public class Canvas extends JPanel{
         area = new Dimension(0,0);
         colors = new Color[4];
         colors[0] = new Color(0, 0, 0);
-        colors[1] = new Color(255, 0, 0);
-        colors[2] = new Color(0, 255, 0);
-        colors[3] = new Color(0, 0, 255);
+        colors[1] = new Color(125, 125, 0);
+        colors[2] = new Color(125, 125, 125);
+        colors[3] = new Color(125, 0, 0);
     }
 
     private void doDrawing(Graphics g) {
@@ -73,17 +73,17 @@ public class Canvas extends JPanel{
     }
     public void clearMatrix(){
         matrix = null;
-        this.repaint();
+        repaint();
     }
     public void nextGen(){
         matrix.jumpToNexGen();
-        this.repaint();
+        repaint();
     }
     public  void changeEditMode(){
         if (!editMode) {
             editMode = true;
         }else{
-            editMode=false;
+            editMode = false;
         }
         addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -91,9 +91,15 @@ public class Canvas extends JPanel{
                     int xModGrid = e.getX() % (blockSize + 1);
                     int yModGrid = e.getY() % (blockSize + 1);
                     if(xModGrid != 0 && yModGrid != 0){
-                        System.out.println(e.getX()/(blockSize+1)+" "+e.getY()/(blockSize+1));
+                        if(matrix == null){
+                            matrix = new Matrix(elementList);
+                            matrix.fillMatrix();
+                        }
                         Selectable selectable = Selectable.getInstance();
-                        System.out.println(selectable.getSelected());
+                        int posX = e.getX()/(blockSize+1);
+                        int posY = e.getY()/(blockSize+1);
+                        matrix.refreshMatrix(new ElementFactory().newElement(selectable.getSelected(),posX,posY,selectable.getRotation()));
+                        repaint();
                     }
                 }
             }

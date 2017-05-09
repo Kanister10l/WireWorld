@@ -93,8 +93,8 @@ public class Gui extends JFrame {
                 startSimButton.setText("Start symulacji");
             }
             canvas.changeEditMode();
-            getContentPane().remove(menuPanel);
-            getContentPane().add(editPanel);
+            remove(menuPanel);
+            add(editPanel);
             revalidate();
             repaint();
         });
@@ -112,8 +112,8 @@ public class Gui extends JFrame {
     //edit mode listeners
     public void backToDefaultAction(){
         canvas.changeEditMode();
-        getContentPane().remove(editPanel);
-        getContentPane().add(menuPanel);
+        remove(editPanel);
+        add(menuPanel);
         revalidate();
         repaint();
     }
