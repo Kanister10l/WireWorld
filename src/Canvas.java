@@ -65,14 +65,14 @@ public class Canvas extends JPanel{
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        matrix = new Matrix(elementList);
-        matrix.fillMatrix();
         System.out.println(matrix.getSizeY());
         setArea((matrix.getSizeX())*(blockSize+1),(matrix.getSizeY())*(blockSize+1));
 
     }
     public void clearMatrix(){
-        matrix = null;
+        WireElement[] elementList = new WireElement[10];
+        matrix = new Matrix(elementList);
+        matrix.fillMatrix();
         repaint();
     }
     public void nextGen(){
