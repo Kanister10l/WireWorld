@@ -1,39 +1,35 @@
+import sun.reflect.misc.ConstructorUtil;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * Created on 11.04.2017 at 21:47 for usage in WireWorld.
  */
 public class ElementFactory {
-    private WireElement element;
 
     public ElementFactory(){
 
     }
 
-    public WireElement newElement(String type, int posX, int posY, int rotation){
-        if (type.equals("Diode"))
-            element = new Diode(posX, posY, rotation);
-        else if (type.equals("ElectronHead"))
-            element = new ElectronHead(posX, posY, rotation);
-        else if (type.equals("ElectronTail"))
-            element = new ElectronTail(posX, posY, rotation);
-        else if (type.equals("ORGate"))
-            element = new ORGate(posX, posY, rotation);
-        else if (type.equals("XORGate"))
-            element = new XORGate(posX, posY, rotation);
-        else if (type.equals("NANDGate1"))
-            element = new NANDGate1(posX, posY, rotation);
-        else if (type.equals("NANDGate2"))
-            element = new NANDGate2(posX, posY, rotation);
-        else if (type.equals("NANDORGate"))
-            element = new NANDORGate(posX, posY, rotation);
-        else if (type.equals("NANDORGateMirrored"))
-            element = new NANDORGateMirrored(posX, posY, rotation);
-        else if (type.equals("FlipFlop"))
-            element = new FlipFlop(posX, posY, rotation);
-        else if (type.equals("Wire"))
-            element = new Wire(posX, posY, rotation);
-        else
-            element = null;
-
-        return element;
+    public WireElement newElement(String type, int posX, int posY, int rotation) {
+        try {
+            return (WireElement) Class.forName(type).getConstructor(int.class, int.class, int.class).newInstance(posX, posY, rotation);
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            return null;
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+            return null;
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
