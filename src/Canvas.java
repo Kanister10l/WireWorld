@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Random;
@@ -9,6 +11,7 @@ public class Canvas extends JPanel{
     private Matrix matrix;
     private Color colors[];
     private int blockSize = 15;
+    private boolean editMode=false;
     private WireElement[] elementList;
     public Canvas() {
         area = new Dimension(0,0);
@@ -68,10 +71,35 @@ public class Canvas extends JPanel{
         setArea((matrix.getSizeX())*(blockSize+1),(matrix.getSizeY())*(blockSize+1));
 
     }
+    public void clearMatrix(){
+        matrix = null;
+        this.repaint();
+    }
     public void nextGen(){
         matrix.jumpToNexGen();
         this.repaint();
     }
+    public  void changeEditMode(){
+        if (!editMode) {
+            editMode = true;
+        }else{
+            editMode=false;
+        }
+        addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                if (e.getButton() == MouseEvent.BUTTON1 && editMode) {
+                    int xModGrid = e.getX() % (blockSize + 1);
+                    int yModGrid = e.getY() % (blockSize + 1);
+                    if(xModGrid != 0 && yModGrid != 0){
+                        System.out.println(e.getX()/(blockSize+1)+" "+e.getY()/(blockSize+1));
+                        Selectable selectable = Selectable.getInstance();
+                        System.out.println(selectable.getSelected());
+                    }
+                }
+            }
+        });
+    }
+
     @Override
     public void paintComponent(Graphics g) {
 

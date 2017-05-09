@@ -1,0 +1,10 @@
+0.ElectronHead
+1.ElectronTail
+2.FlipFlop
+3.NANDGate1
+4.NANDGate2
+5.NANDORGate
+6.NANDORGateMirrored
+7.ORGate
+8.Wire
+9.XORGate

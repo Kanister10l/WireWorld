@@ -1,15 +1,11 @@
+import javafx.scene.control.Alert;
+
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
-import static java.awt.GridBagConstraints.PAGE_START;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -20,11 +16,16 @@ public class Gui extends JFrame {
     private JButton startSimButton;
     private JButton loadFileButton;
     private JButton saveFileButton;
+    private JButton changeModeButton;
     private JButton exitButton;
+
     private JPanel menuPanel;
+    private JPanel editPanel;
     private Canvas canvas;
     private Boolean isSimRunning=false;
     private Simulation sim;
+
+
 
     public Gui(){
         try {
@@ -85,15 +86,39 @@ public class Gui extends JFrame {
                 showMessageDialog(null   , "Najpierw załaduj plik z układem!","Błąd",ERROR_MESSAGE);
             }
         });
+        changeModeButton.addActionListener((ActionEvent event) -> {
+            if(isSimRunning){
+                sim.stop();
+                isSimRunning = false;
+                startSimButton.setText("Start symulacji");
+            }
+            canvas.changeEditMode();
+            getContentPane().remove(menuPanel);
+            getContentPane().add(editPanel);
+            revalidate();
+            repaint();
+        });
         exitButton.addActionListener((ActionEvent event) -> {
             System.exit(0);
         });
         //drag and drop
-        new  FileDrop( canvas, files -> {
+        new FileDrop( canvas, files -> {
             File toLoad = files[0];
             canvas.loadMatix(toLoad);
             canvas.repaint();
         });
+
+    }
+    //edit mode listeners
+    public void backToDefaultAction(){
+        canvas.changeEditMode();
+        getContentPane().remove(editPanel);
+        getContentPane().add(menuPanel);
+        revalidate();
+        repaint();
+    }
+    public void newCanvasAction(){
+        canvas.clearMatrix();
     }
     private void initUI(){
         setLayout(new BorderLayout());
@@ -113,9 +138,17 @@ public class Gui extends JFrame {
         saveFileButton.setBounds(10,90,120,30);
         menuPanel.add(saveFileButton);
 
+        changeModeButton = new JButton("Włącz edytor");
+        changeModeButton.setBounds(10,130,120,30);
+        menuPanel.add(changeModeButton);
+
         exitButton = new JButton("Wyjście");
-        exitButton.setBounds(10,130,120,30);
+        exitButton.setBounds(10,170,120,30);
         menuPanel.add(exitButton);
+
+        //panel for editing
+        editPanel = new EditPanel(this);
+
 
         add(menuPanel,BorderLayout.WEST);
 
