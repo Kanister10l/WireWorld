@@ -61,7 +61,7 @@ public class Gui extends JFrame {
                 File file = fc.getSelectedFile();
                 FileSave save = new FileSave(file);
                 try {
-                    save.saveFile(canvas.getElementList(), canvas.getMatrix());
+                    save.saveFile(canvas.getMatrix().getElementList(), canvas.getMatrix());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

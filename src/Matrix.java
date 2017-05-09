@@ -135,4 +135,8 @@ public class Matrix {
     private void doubleSize(){
         elementList = Arrays.copyOf(elementList, elementList.length * 2);
     }
+
+    public WireElement[] getElementList(){
+        return elementList;
+    }
 }
