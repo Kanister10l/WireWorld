@@ -98,8 +98,10 @@ public class Canvas extends JPanel{
                         Selectable selectable = Selectable.getInstance();
                         int posX = e.getX()/(blockSize+1);
                         int posY = e.getY()/(blockSize+1);
-                        matrix.refreshMatrix(new ElementFactory().newElement(selectable.getSelected(),posX,posY,selectable.getRotation()));
-                        repaint();
+                        if(selectable.getSelected() != "") {
+                            matrix.refreshMatrix(new ElementFactory().newElement(selectable.getSelected(), posX, posY, selectable.getRotation()));
+                            repaint();
+                        }
                     }
                 }
             }
