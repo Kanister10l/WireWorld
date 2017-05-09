@@ -18,7 +18,8 @@ public class Matrix {
             if (element != null){
                 for (int i = 0; i < element.getSizeX(); i++) {
                     for (int o = 0; o < element.getSizeY(); o++) {
-                        matrix[i + element.getPosX() + 1][o + element.getPosY() + 1] = element.getGridPoint(i, o);
+                        if (matrix[i + element.getPosX() + 1][o + element.getPosY() + 1] < element.getGridPoint(i, o))
+                            matrix[i + element.getPosX() + 1][o + element.getPosY() + 1] = element.getGridPoint(i, o);
                     }
                 }
             }
@@ -92,11 +93,26 @@ public class Matrix {
             System.out.printf("\n");
         }
     }
+
     public int getSizeX(){
         return lastX + 2;
     }
 
     public int getSizeY(){
         return lastY + 2;
+    }
+
+    private void clearMatrix(){
+        for (int i = 0; i < lastX + 2; i++) {
+            for (int j = 0; j < lastY + 2; j++) {
+                matrix[i][j] = 0;
+            }
+        }
+    }
+
+    public void refreshMatrix(WireElement[] newElementList){
+        elementList = newElementList;
+        this.clearMatrix();
+        this.fillMatrix();
     }
 }
