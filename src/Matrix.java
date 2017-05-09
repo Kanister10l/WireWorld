@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Created on 12.04.2017 at 21:47 for usage in WireWorld.
  */
@@ -110,9 +112,27 @@ public class Matrix {
         }
     }
 
-    public void refreshMatrix(WireElement[] newElementList){
-        elementList = newElementList;
+    public void refreshMatrix(WireElement newElement){
+        int k = this.getNumberOfElements();
+        if (elementList.length <= k)
+            this.doubleSize();
+        elementList[k] = newElement;
         this.clearMatrix();
         this.fillMatrix();
+    }
+
+    private int getNumberOfElements(){
+        int k = 0;
+        for (WireElement element: elementList) {
+            if (element != null)
+                k++;
+            else
+                return k;
+        }
+        return k;
+    }
+
+    private void doubleSize(){
+        elementList = Arrays.copyOf(elementList, elementList.length * 2);
     }
 }

@@ -17,9 +17,9 @@ public class Canvas extends JPanel{
         area = new Dimension(0,0);
         colors = new Color[4];
         colors[0] = new Color(0, 0, 0);
-        colors[1] = new Color(125, 125, 0);
-        colors[2] = new Color(125, 125, 125);
-        colors[3] = new Color(125, 0, 0);
+        colors[1] = new Color(255, 0, 0);
+        colors[2] = new Color(0, 255, 0);
+        colors[3] = new Color(0, 0, 255);
     }
 
     private void doDrawing(Graphics g) {
