@@ -65,6 +65,8 @@ public class Canvas extends JPanel{
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        matrix = new Matrix(elementList);
+        matrix.fillMatrix();
         System.out.println(matrix.getSizeY());
         setArea((matrix.getSizeX())*(blockSize+1),(matrix.getSizeY())*(blockSize+1));
 
