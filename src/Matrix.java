@@ -45,7 +45,7 @@ public class Matrix {
 
     private int findNeighbour(int posX, int posY){
         int n=0;
-        if (matrix[posX - 1][posY - 1] == 3)
+        if (matrix[posX - 1][posY - 1] == 3)//masakra daj else
             n++;
         if (matrix[posX - 1][posY] == 3)
             n++;

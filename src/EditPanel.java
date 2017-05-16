@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,15 +16,16 @@ public class EditPanel extends JPanel implements ActionListener {
 
     public EditPanel(Gui app) {
         this.app = app;
-        this.setLayout(null);
+        setLayout(null);
+        setPreferredSize(new Dimension(140, -1));
         newCanvasButton = new JButton("Nowy obwód");
         newCanvasButton.setBounds(10, 10, 120, 30);
         newCanvasButton.addActionListener(this);
-        this.add(newCanvasButton);
+        add(newCanvasButton);
         backToDefaultButton = new JButton("Powrot do menu");
         backToDefaultButton.setBounds(10, 50, 120, 30);
         backToDefaultButton.addActionListener(this);
-        this.add(backToDefaultButton);
+        add(backToDefaultButton);
 
 
         elementButtons = new JButton[elementCount];
@@ -58,7 +60,7 @@ public class EditPanel extends JPanel implements ActionListener {
         elementButtons[8].setBounds(10, 360, 22, 22);
         elementButtons[9].setBounds(70, 340, 50, 64);
         for (int i = 0; i < elementCount; i++) {
-            this.add(elementButtons[i]);
+            add(elementButtons[i]);
         }
 
 

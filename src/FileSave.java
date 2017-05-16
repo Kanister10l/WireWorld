@@ -7,7 +7,7 @@ import java.io.IOException;
  * Created on 16.04.2017 at 20:26 for usage in WireWorld.
  */
 public class FileSave {
-    private File file;
+    private File file;// iserializable
 
     public FileSave(File file){
         this.file = file;

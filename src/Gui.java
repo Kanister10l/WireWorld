@@ -94,7 +94,7 @@ public class Gui extends JFrame {
             }
             canvas.changeEditMode();
             remove(menuPanel);
-            add(editPanel);
+            add(editPanel,BorderLayout.WEST);
             revalidate();
             repaint();
         });
@@ -113,7 +113,7 @@ public class Gui extends JFrame {
     public void backToDefaultAction(){
         canvas.changeEditMode();
         remove(editPanel);
-        add(menuPanel);
+        add(menuPanel,BorderLayout.WEST);
         revalidate();
         repaint();
     }
