@@ -33,8 +33,12 @@ public class Selectable {
         return rotation;
     }
 
-    public void setRotation(int rotation) {
-        this.rotation = rotation;
+    public void Rotate() {
+        if(this.rotation == 360){
+            this.rotation = 90;
+        }else{
+            this.rotation += 90;
+        }
     }
 
 }

@@ -89,23 +89,26 @@ public class Canvas extends JPanel{
         }
         addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
+                Selectable selectable = Selectable.getInstance();
                 if (e.getButton() == MouseEvent.BUTTON1 && editMode) {
                     int xModGrid = e.getX() % (blockSize + 1);
                     int yModGrid = e.getY() % (blockSize + 1);
-                    if(xModGrid != 0 && yModGrid != 0){
-                        if(matrix == null){
-                            matrix = new Matrix(elementList);
-                            matrix.fillMatrix();
-                        }
-                        Selectable selectable = Selectable.getInstance();
-                        int posX = e.getX()/(blockSize+1);
-                        int posY = e.getY()/(blockSize+1);
-                        if(selectable.getSelected() != "") {
-                            matrix.refreshMatrix(new ElementFactory().newElement(selectable.getSelected(), posX, posY, selectable.getRotation()));
-                            repaint();
+                    if (xModGrid != 0 && yModGrid != 0) {
+                        if (matrix != null) {
+                            int posX = e.getX() / (blockSize + 1);
+                            int posY = e.getY() / (blockSize + 1);
+                            if (selectable.getSelected() != "") {
+                                matrix.refreshMatrix(new ElementFactory().newElement(selectable.getSelected(), posX, posY, selectable.getRotation()));
+                                repaint();
+                            }
                         }
                     }
+                }else if(e.getButton() == MouseEvent.BUTTON3 && editMode){
+                    if(selectable.getSelected() != ""){
+                        selectable.Rotate();
+                    }
                 }
+
             }
         });
     }
